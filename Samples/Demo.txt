@@ -1,0 +1,25 @@
+Exemplu pentru:
+
+VAR
+    V1 : BOOL := INPUT_PIN_5;
+    V2 : INT := 12;
+END_VAR;
+
+module(
+    (import "IO" "get_pin" (func $getpin (param $pin i32) (result i32)))
+    (import "IO" "set_pin") (func $setpin (param $pin i32))
+    (start $program)
+        (func $program
+            (local $V1 i32)
+            (local $V2 i32)
+            (local $pinnr i32)
+            (i32.const 5)
+            (local.set $pinnr) ;;set pin number value
+            (local.get $pinnr)
+            (call $getpin)
+            (local.set $V1) ;;set v1 as the input pin nr 5
+            (i32.const 12)
+            (local.set $V2)
+        )
+    )
+)

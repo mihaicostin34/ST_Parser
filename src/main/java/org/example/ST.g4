@@ -7,93 +7,70 @@
 grammar ST;
 
 pou
-  : statement*
+  : statement+  #multipleStatements
   ;
 
-statement: //function
-//             | function_block
-             var_block
-             | assignment
+statement:  var_block  #variableBlockRule
+//             | assignment
              ;
 
-//function: 'FUNCTION' name=ID ':' type=type_rule var_blocks+=var_block*;
-//
-//function_block:
-//  'FUNCTION_BLOCK' name=ID
-//  var_blocks+=var_block*;
-
-var_block locals[boolean input, boolean output, boolean temp]
-  : ('VAR'
-     | { $input=true; } 'VAR_INPUT'
-     | { $output=true; } 'VAR_OUTPUT'
-     | { $input=$output=true; } 'VAR_INPUT_OUTPUT'
-     | { $temp=true; } 'VAR_TEMP')
-    ( variables+=variable_declaration* 'END_VAR');
-
-type_rule:
-  name=ID #simpleType
-//  | array=array_type #arrayType
-//  | pointer=pointer_type #pointerType
+var_block
+  : ('VAR'  variables+=variable_declaration* 'END_VAR') #variableBlock
   ;
-
-//array_type
-//  : 'ARRAY' '[' ranges+=range (',' ranges+=range)* ']' 'OF' type=type_rule;
-
-//range
-//  : lbound=integer_literal '..' ubound=integer_literal;
-
-//pointer_type: 'POINTER' 'TO' type=type_rule;
 
 variable_declaration:
-  names+=ID (',' names+=ID)* ':' type=type_rule (':=' initializer=variable_initializer)? ';'
+  ID ':' type_rule (':=' value )? ';'  #variableDeclaration
+;
+
+type_rule:
+  BOOLEAN  #booleanType
+  | INTEGER #integerType
   ;
 
-variable_initializer:
-  literal;
+//
+//assignment:
+//    ID ':=' expression ';'
+//    | OUTPUT_PIN ':=' expression ';'
+//;
 
-literal:
-  numeric_literal | string_literal | boolean_literal | ID;
+//expression:
+//left=expression op=MUL right=expression
+//          | left=expression op=DIV right=expression
+//          | left=expression op=MOD right=expression
+//          | left=expression op=ADD right=expression
+//          | left=expression op=SUB right=expression
+//          | LP expression RP
+//          | op = NOT expression
+//          | op = SUB expression
+//          | left=expression op=OR right=expression
+//          | left=expression op=AND right=expression
+//          | left=expression op=XOR right=expression
+//          | left=expression op=EQ right=expression
+//          | left=expression op=DIFF right=expression
+//          | left = expression op = GE right = expression
+//          | left = expression op = GT right = expression
+//          | left = expression op = LT right = expression
+//          | left = expression op = LE right = expression
+//          | ID
+//          | INPUT_PIN
+//;
 
-assignment:
-    ID ':=' expression ';'
-    | OUTPUT_PIN ':=' expression ';'
+value: boolean_literal  #booleanValue
+    | numeric_literal  #numericLiteralValue
+    | INPUT_PIN  #inputPinValue
 ;
 
-expression:
-left=expression op=MUL right=expression
-          | left=expression op=DIV right=expression
-          | left=expression op=MOD right=expression
-          | left=expression op=ADD right=expression
-          | left=expression op=SUB right=expression
-          | LP expression RP
-          | op = NOT expression
-          | op = SUB expression
-          | left=expression op=OR right=expression
-          | left=expression op=AND right=expression
-          | left=expression op=XOR right=expression
-          | left=expression op=EQ right=expression
-          | left=expression op=DIFF right=expression
-          | left = expression op = GE right = expression
-          | left = expression op = GT right = expression
-          | left = expression op = LT right = expression
-          | left = expression op = LE right = expression
-          | ID
-;
-
-boolean_literal: 'TRUE' | 'FALSE' | INPUT_PIN;
+boolean_literal: 'TRUE'  #trueValue
+               | 'FALSE'  #falseValue
+               ;
 
 numeric_literal
-  : '-'? integer_literal
-  | '-'? Floating_point_literal
+  : '-'? Binary_literal #binaryValue
+  | '-'? Octal_literal #octalValue
+  | '-'? Decimal_literal #decimalValue
+  | '-'? Floating_point_literal #floatValue
+  | '-'? Hexadecimal_literal #hexValue
   ;
-
-integer_literal
- : Binary_literal
- | Octal_literal
- | Decimal_literal
- | Pure_decimal_digits
- | Hexadecimal_literal
- ;
 
 INPUT_PIN: 'INPUT_PIN_'[0-9]+;
 OUTPUT_PIN: 'OUTPUT_PIN_'[0-9]+;
@@ -162,5 +139,7 @@ LT: '<';
 LE: '<=';
 EQ: '==';
 DIFF: '!=';
+BOOLEAN: ' BOOL';
+INTEGER: ' INT';
 WS : [ \n\r\t]+ -> channel(HIDDEN) ;
 Block_comment : '(*' (Block_comment|.)*? '*)' -> channel(HIDDEN) ; // nesting comments allowed

@@ -17,17 +17,11 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPou(STParser.PouContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#function}.
+	 * Visit a parse tree produced by {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(STParser.FunctionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link STParser#function_block}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_block(STParser.Function_blockContext ctx);
+	T visitStatement(STParser.StatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -35,62 +29,23 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVar_block(STParser.Var_blockContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code simpleType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimpleType(STParser.SimpleTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code arrayType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayType(STParser.ArrayTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPointerType(STParser.PointerTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link STParser#array_type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArray_type(STParser.Array_typeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link STParser#range}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRange(STParser.RangeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link STParser#pointer_type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPointer_type(STParser.Pointer_typeContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link STParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVariable_declaration(STParser.Variable_declarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#variable_initializer}.
+	 * Visit a parse tree produced by {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariable_initializer(STParser.Variable_initializerContext ctx);
+	T visitType_rule(STParser.Type_ruleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#literal}.
+	 * Visit a parse tree produced by {@link STParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLiteral(STParser.LiteralContext ctx);
+	T visitValue(STParser.ValueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link STParser#boolean_literal}.
 	 * @param ctx the parse tree

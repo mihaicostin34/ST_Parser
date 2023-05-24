@@ -18,25 +18,15 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitPou(STParser.PouContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#function}.
+	 * Enter a parse tree produced by {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction(STParser.FunctionContext ctx);
+	void enterStatement(STParser.StatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#function}.
+	 * Exit a parse tree produced by {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction(STParser.FunctionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link STParser#function_block}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunction_block(STParser.Function_blockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link STParser#function_block}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunction_block(STParser.Function_blockContext ctx);
+	void exitStatement(STParser.StatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -48,72 +38,6 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitVar_block(STParser.Var_blockContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code simpleType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimpleType(STParser.SimpleTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code simpleType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimpleType(STParser.SimpleTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code arrayType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayType(STParser.ArrayTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code arrayType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayType(STParser.ArrayTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void enterPointerType(STParser.PointerTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link STParser#type_rule}.
-	 * @param ctx the parse tree
-	 */
-	void exitPointerType(STParser.PointerTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link STParser#array_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterArray_type(STParser.Array_typeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link STParser#array_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitArray_type(STParser.Array_typeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link STParser#range}.
-	 * @param ctx the parse tree
-	 */
-	void enterRange(STParser.RangeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link STParser#range}.
-	 * @param ctx the parse tree
-	 */
-	void exitRange(STParser.RangeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link STParser#pointer_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterPointer_type(STParser.Pointer_typeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link STParser#pointer_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitPointer_type(STParser.Pointer_typeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link STParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -124,25 +48,25 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitVariable_declaration(STParser.Variable_declarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#variable_initializer}.
+	 * Enter a parse tree produced by {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariable_initializer(STParser.Variable_initializerContext ctx);
+	void enterType_rule(STParser.Type_ruleContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#variable_initializer}.
+	 * Exit a parse tree produced by {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariable_initializer(STParser.Variable_initializerContext ctx);
+	void exitType_rule(STParser.Type_ruleContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#literal}.
+	 * Enter a parse tree produced by {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void enterLiteral(STParser.LiteralContext ctx);
+	void enterValue(STParser.ValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#literal}.
+	 * Exit a parse tree produced by {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void exitLiteral(STParser.LiteralContext ctx);
+	void exitValue(STParser.ValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link STParser#boolean_literal}.
 	 * @param ctx the parse tree
