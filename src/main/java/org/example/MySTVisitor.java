@@ -3,49 +3,123 @@ package org.example;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STVisitor<String>{
+    @Override
+    public String visitMultipleStatements(STParser.MultipleStatementsContext ctx) {
+        String module = "(module \n    (import \"IO\" \"getpin\" (func $getpin (param $pin i32) (result i32)))\n" +
+                "    (import \"IO\" \"setpin\") (func $setpin (param $pin i32))\n(start $program)\n(func $program";
+        StringBuilder contents = new StringBuilder();
+        for(STParser.StatementContext s : ctx.statement()){
+            contents.append(this.visit(s));
+            contents.append("\n");
+        }
+        module += contents;
+        module+=")\n)";
+        return module;
+    }
 
     @Override
-    public String visitPou(STParser.PouContext ctx) {
+    public String visitVariableBlockRule(STParser.VariableBlockRuleContext ctx) {
+        return this.visit(ctx.var_block());
+    }
+
+    @Override
+    public String visitVariableBlock(STParser.VariableBlockContext ctx) {
+        StringBuilder a = new StringBuilder();
+        for(STParser.Variable_declarationContext c : ctx.variables){
+            String visitResult = this.visit(c);
+            a.append('\n');
+            a.append(visitResult);
+        }
+        return a.toString();
+    }
+
+    @Override
+    public String visitVariableDeclaration(STParser.VariableDeclarationContext ctx) {
+        StringBuilder finalRes = new StringBuilder();
+        String varName = ctx.ID().getText();
+        String type = this.visit(ctx.type_rule());
+        String declaration_line = "(local $" + varName+ " " + type + ")";
+        finalRes.append(declaration_line);
+        if(ctx.value()!=null){
+            String val = this.visit(ctx.value());
+            finalRes.append('\n');
+            finalRes.append(val);
+            finalRes.append('\n');
+            finalRes.append("(local.set $" + varName + ")");
+        }
+        return finalRes.toString();
+    }
+
+    @Override
+    public String visitBooleanType(STParser.BooleanTypeContext ctx) {
+        return "i32";
+    }
+
+    @Override
+    public String visitIntegerType(STParser.IntegerTypeContext ctx) {
+        return "i32";
+    }
+
+    @Override
+    public String visitBooleanValue(STParser.BooleanValueContext ctx) {
+        StringBuilder boolVal = new StringBuilder();
+        boolVal.append("(i32.const ");
+        boolVal.append(this.visit(ctx.boolean_literal()));
+        boolVal.append(")");
+        return boolVal.toString();
+    }
+
+    @Override
+    public String visitNumericLiteralValue(STParser.NumericLiteralValueContext ctx) {
         return null;
     }
 
     @Override
-    public String visitStatement(STParser.StatementContext ctx) {
+    public String visitInputPinValue(STParser.InputPinValueContext ctx) {
+        //add pin number to stack
+        StringBuilder result = new StringBuilder();
+        String inputPinNr = ctx.INPUT_PIN().getText().split("_")[2];
+        System.out.println(inputPinNr);
+        String addValueToStack = "(i32.const "+ inputPinNr +") ;;input port number";
+        result.append(addValueToStack);
+        result.append('\n');
+        //call getpin value
+        result.append("(call $getpin)");
+        return result.toString();
+    }
+
+    @Override
+    public String visitTrueValue(STParser.TrueValueContext ctx) {
+        return "1";
+    }
+
+    @Override
+    public String visitFalseValue(STParser.FalseValueContext ctx) {
+        return "0";
+    }
+
+    @Override
+    public String visitBinaryValue(STParser.BinaryValueContext ctx) {
         return null;
     }
 
     @Override
-    public String visitVar_block(STParser.Var_blockContext ctx) {
+    public String visitOctalValue(STParser.OctalValueContext ctx) {
         return null;
     }
 
     @Override
-    public String visitVariable_declaration(STParser.Variable_declarationContext ctx) {
+    public String visitDecimalValue(STParser.DecimalValueContext ctx) {
         return null;
     }
 
     @Override
-    public String visitType_rule(STParser.Type_ruleContext ctx) {
+    public String visitFloatValue(STParser.FloatValueContext ctx) {
         return null;
     }
 
     @Override
-    public String visitValue(STParser.ValueContext ctx) {
-        return null;
-    }
-
-    @Override
-    public String visitBoolean_literal(STParser.Boolean_literalContext ctx) {
-        return null;
-    }
-
-    @Override
-    public String visitNumeric_literal(STParser.Numeric_literalContext ctx) {
-        return null;
-    }
-
-    @Override
-    public String visitInteger_literal(STParser.Integer_literalContext ctx) {
+    public String visitHexValue(STParser.HexValueContext ctx) {
         return null;
     }
 

@@ -6,7 +6,7 @@
 
 grammar ST;
 
-pou
+start
   : statement+  #multipleStatements
   ;
 

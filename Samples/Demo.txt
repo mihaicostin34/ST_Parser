@@ -6,8 +6,8 @@ VAR
 END_VAR;
 
 module(
-    (import "IO" "get_pin" (func $getpin (param $pin i32) (result i32)))
-    (import "IO" "set_pin") (func $setpin (param $pin i32))
+    (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
+    (import "IO" "setpin") (func $setpin (param $pin i32))
     (start $program)
         (func $program
             (local $V1 i32)
@@ -21,5 +21,5 @@ module(
             (i32.const 12)
             (local.set $V2)
         )
-    )
 )
+

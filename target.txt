@@ -1,0 +1,14 @@
+(module 
+    (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
+    (import "IO" "setpin") (func $setpin (param $pin i32))
+(start $program)
+(func $program
+(local $V1 i32)
+(i32.const 1)
+(local.set $V1)
+(local $V2 i32)
+(i32.const 2) ;;input port number
+(call $getpin)
+(local.set $V2)
+)
+)

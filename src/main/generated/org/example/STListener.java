@@ -8,95 +8,197 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface STListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link STParser#pou}.
+	 * Enter a parse tree produced by the {@code multipleStatements}
+	 * labeled alternative in {@link STParser#start}.
 	 * @param ctx the parse tree
 	 */
-	void enterPou(STParser.PouContext ctx);
+	void enterMultipleStatements(STParser.MultipleStatementsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#pou}.
+	 * Exit a parse tree produced by the {@code multipleStatements}
+	 * labeled alternative in {@link STParser#start}.
 	 * @param ctx the parse tree
 	 */
-	void exitPou(STParser.PouContext ctx);
+	void exitMultipleStatements(STParser.MultipleStatementsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#statement}.
+	 * Enter a parse tree produced by the {@code variableBlockRule}
+	 * labeled alternative in {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(STParser.StatementContext ctx);
+	void enterVariableBlockRule(STParser.VariableBlockRuleContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#statement}.
+	 * Exit a parse tree produced by the {@code variableBlockRule}
+	 * labeled alternative in {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(STParser.StatementContext ctx);
+	void exitVariableBlockRule(STParser.VariableBlockRuleContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#var_block}.
+	 * Enter a parse tree produced by the {@code variableBlock}
+	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar_block(STParser.Var_blockContext ctx);
+	void enterVariableBlock(STParser.VariableBlockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#var_block}.
+	 * Exit a parse tree produced by the {@code variableBlock}
+	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar_block(STParser.Var_blockContext ctx);
+	void exitVariableBlock(STParser.VariableBlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#variable_declaration}.
+	 * Enter a parse tree produced by the {@code variableDeclaration}
+	 * labeled alternative in {@link STParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariable_declaration(STParser.Variable_declarationContext ctx);
+	void enterVariableDeclaration(STParser.VariableDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#variable_declaration}.
+	 * Exit a parse tree produced by the {@code variableDeclaration}
+	 * labeled alternative in {@link STParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariable_declaration(STParser.Variable_declarationContext ctx);
+	void exitVariableDeclaration(STParser.VariableDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#type_rule}.
+	 * Enter a parse tree produced by the {@code booleanType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void enterType_rule(STParser.Type_ruleContext ctx);
+	void enterBooleanType(STParser.BooleanTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#type_rule}.
+	 * Exit a parse tree produced by the {@code booleanType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void exitType_rule(STParser.Type_ruleContext ctx);
+	void exitBooleanType(STParser.BooleanTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#value}.
+	 * Enter a parse tree produced by the {@code integerType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void enterValue(STParser.ValueContext ctx);
+	void enterIntegerType(STParser.IntegerTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#value}.
+	 * Exit a parse tree produced by the {@code integerType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 */
-	void exitValue(STParser.ValueContext ctx);
+	void exitIntegerType(STParser.IntegerTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#boolean_literal}.
+	 * Enter a parse tree produced by the {@code booleanValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolean_literal(STParser.Boolean_literalContext ctx);
+	void enterBooleanValue(STParser.BooleanValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#boolean_literal}.
+	 * Exit a parse tree produced by the {@code booleanValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolean_literal(STParser.Boolean_literalContext ctx);
+	void exitBooleanValue(STParser.BooleanValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#numeric_literal}.
+	 * Enter a parse tree produced by the {@code numericLiteralValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumeric_literal(STParser.Numeric_literalContext ctx);
+	void enterNumericLiteralValue(STParser.NumericLiteralValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#numeric_literal}.
+	 * Exit a parse tree produced by the {@code numericLiteralValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumeric_literal(STParser.Numeric_literalContext ctx);
+	void exitNumericLiteralValue(STParser.NumericLiteralValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link STParser#integer_literal}.
+	 * Enter a parse tree produced by the {@code inputPinValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void enterInteger_literal(STParser.Integer_literalContext ctx);
+	void enterInputPinValue(STParser.InputPinValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link STParser#integer_literal}.
+	 * Exit a parse tree produced by the {@code inputPinValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void exitInteger_literal(STParser.Integer_literalContext ctx);
+	void exitInputPinValue(STParser.InputPinValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code trueValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrueValue(STParser.TrueValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code trueValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrueValue(STParser.TrueValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code falseValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterFalseValue(STParser.FalseValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code falseValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitFalseValue(STParser.FalseValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code binaryValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryValue(STParser.BinaryValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code binaryValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryValue(STParser.BinaryValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code octalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterOctalValue(STParser.OctalValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code octalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitOctalValue(STParser.OctalValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code decimalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecimalValue(STParser.DecimalValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code decimalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecimalValue(STParser.DecimalValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code floatValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatValue(STParser.FloatValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code floatValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatValue(STParser.FloatValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code hexValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterHexValue(STParser.HexValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code hexValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitHexValue(STParser.HexValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link STParser#string_literal}.
 	 * @param ctx the parse tree

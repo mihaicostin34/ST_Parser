@@ -1,0 +1,4 @@
+VAR
+    V1 : BOOL := TRUE;
+    V2 : BOOL := INPUT_PIN_2;
+END_VAR;

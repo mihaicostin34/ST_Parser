@@ -11,59 +11,117 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link STParser#pou}.
+	 * Visit a parse tree produced by the {@code multipleStatements}
+	 * labeled alternative in {@link STParser#start}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPou(STParser.PouContext ctx);
+	T visitMultipleStatements(STParser.MultipleStatementsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#statement}.
+	 * Visit a parse tree produced by the {@code variableBlockRule}
+	 * labeled alternative in {@link STParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(STParser.StatementContext ctx);
+	T visitVariableBlockRule(STParser.VariableBlockRuleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#var_block}.
+	 * Visit a parse tree produced by the {@code variableBlock}
+	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar_block(STParser.Var_blockContext ctx);
+	T visitVariableBlock(STParser.VariableBlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#variable_declaration}.
+	 * Visit a parse tree produced by the {@code variableDeclaration}
+	 * labeled alternative in {@link STParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariable_declaration(STParser.Variable_declarationContext ctx);
+	T visitVariableDeclaration(STParser.VariableDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#type_rule}.
+	 * Visit a parse tree produced by the {@code booleanType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_rule(STParser.Type_ruleContext ctx);
+	T visitBooleanType(STParser.BooleanTypeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#value}.
+	 * Visit a parse tree produced by the {@code integerType}
+	 * labeled alternative in {@link STParser#type_rule}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitValue(STParser.ValueContext ctx);
+	T visitIntegerType(STParser.IntegerTypeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#boolean_literal}.
+	 * Visit a parse tree produced by the {@code booleanValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBoolean_literal(STParser.Boolean_literalContext ctx);
+	T visitBooleanValue(STParser.BooleanValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#numeric_literal}.
+	 * Visit a parse tree produced by the {@code numericLiteralValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumeric_literal(STParser.Numeric_literalContext ctx);
+	T visitNumericLiteralValue(STParser.NumericLiteralValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link STParser#integer_literal}.
+	 * Visit a parse tree produced by the {@code inputPinValue}
+	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInteger_literal(STParser.Integer_literalContext ctx);
+	T visitInputPinValue(STParser.InputPinValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code trueValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTrueValue(STParser.TrueValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code falseValue}
+	 * labeled alternative in {@link STParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFalseValue(STParser.FalseValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code binaryValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryValue(STParser.BinaryValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code octalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOctalValue(STParser.OctalValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code decimalValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecimalValue(STParser.DecimalValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code floatValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatValue(STParser.FloatValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code hexValue}
+	 * labeled alternative in {@link STParser#numeric_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHexValue(STParser.HexValueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link STParser#string_literal}.
 	 * @param ctx the parse tree
