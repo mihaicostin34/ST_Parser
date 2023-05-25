@@ -41,6 +41,18 @@ public class STBaseListener implements STListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignmentRule(STParser.AssignmentRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignmentRule(STParser.AssignmentRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableBlock(STParser.VariableBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -89,6 +101,42 @@ public class STBaseListener implements STListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIdAssignment(STParser.IdAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdAssignment(STParser.IdAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOuputAssignment(STParser.OuputAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOuputAssignment(STParser.OuputAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionValue(STParser.ExpressionValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionValue(STParser.ExpressionValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBooleanValue(STParser.BooleanValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -120,6 +168,18 @@ public class STBaseListener implements STListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInputPinValue(STParser.InputPinValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIdValue(STParser.IdValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdValue(STParser.IdValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

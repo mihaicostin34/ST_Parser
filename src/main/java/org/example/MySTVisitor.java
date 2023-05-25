@@ -6,7 +6,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitMultipleStatements(STParser.MultipleStatementsContext ctx) {
         String module = "(module \n    (import \"IO\" \"getpin\" (func $getpin (param $pin i32) (result i32)))\n" +
-                "    (import \"IO\" \"setpin\") (func $setpin (param $pin i32))\n(start $program)\n(func $program";
+                "    (import \"IO\" \"setpin\" (func $setpin (param $pin i32)))\n(start $program)\n(func $program";
         StringBuilder contents = new StringBuilder();
         for(STParser.StatementContext s : ctx.statement()){
             contents.append(this.visit(s));
@@ -20,6 +20,11 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitVariableBlockRule(STParser.VariableBlockRuleContext ctx) {
         return this.visit(ctx.var_block());
+    }
+
+    @Override
+    public String visitAssignmentRule(STParser.AssignmentRuleContext ctx) {
+        return this.visit(ctx.assignment());
     }
 
     @Override
@@ -45,7 +50,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
             finalRes.append('\n');
             finalRes.append(val);
             finalRes.append('\n');
-            finalRes.append("(local.set $" + varName + ")");
+            finalRes.append("(local.set $" + varName + ")\n");
         }
         return finalRes.toString();
     }
@@ -61,6 +66,30 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     }
 
     @Override
+    public String visitIdAssignment(STParser.IdAssignmentContext ctx) {
+        String id = ctx.ID().getText();
+        StringBuilder result = new StringBuilder();
+        result.append(this.visit(ctx.expression()) + "\n");
+        result.append("(local.set $" + id + ")\n");
+        return result.toString();
+    }
+
+    @Override
+    public String visitOuputAssignment(STParser.OuputAssignmentContext ctx) {
+        StringBuilder result = new StringBuilder();
+        result.append("(local.get $" + this.visit(ctx.expression()) + ")\n"); //add expression value to stack
+        String portNumber = ctx.OUTPUT_PIN().getText().split("_")[2];
+        result.append("(i32.const "+ portNumber  + ") ;;ouput port number \n"); //add pport number
+        result.append("(call $setpin)");
+        return result.toString();
+    }
+
+    @Override
+    public String visitExpressionValue(STParser.ExpressionValueContext ctx) {
+        return this.visit(ctx.value());
+    }
+
+    @Override
     public String visitBooleanValue(STParser.BooleanValueContext ctx) {
         StringBuilder boolVal = new StringBuilder();
         boolVal.append("(i32.const ");
@@ -71,7 +100,10 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
 
     @Override
     public String visitNumericLiteralValue(STParser.NumericLiteralValueContext ctx) {
-        return null;
+        StringBuilder result = new StringBuilder();
+        String id = ctx.numeric_literal().getText();
+        result.append("(i32.const " + id + ")");
+        return result.toString();
     }
 
     @Override
@@ -86,6 +118,13 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         //call getpin value
         result.append("(call $getpin)");
         return result.toString();
+    }
+
+    @Override
+    public String visitIdValue(STParser.IdValueContext ctx) {
+        StringBuilder result = new StringBuilder();
+        String id = ctx.ID().getText();
+        return id;
     }
 
     @Override

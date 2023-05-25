@@ -25,6 +25,13 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableBlockRule(STParser.VariableBlockRuleContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code assignmentRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignmentRule(STParser.AssignmentRuleContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code variableBlock}
 	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -53,6 +60,27 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIntegerType(STParser.IntegerTypeContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code idAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdAssignment(STParser.IdAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ouputAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOuputAssignment(STParser.OuputAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionValue}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionValue(STParser.ExpressionValueContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code booleanValue}
 	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
@@ -73,6 +101,13 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInputPinValue(STParser.InputPinValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code idValue}
+	 * labeled alternative in {@link STParser#value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdValue(STParser.IdValueContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code trueValue}
 	 * labeled alternative in {@link STParser#boolean_literal}.

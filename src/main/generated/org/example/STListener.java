@@ -32,6 +32,18 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitVariableBlockRule(STParser.VariableBlockRuleContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code assignmentRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignmentRule(STParser.AssignmentRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignmentRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignmentRule(STParser.AssignmentRuleContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code variableBlock}
 	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -80,6 +92,42 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitIntegerType(STParser.IntegerTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code idAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdAssignment(STParser.IdAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code idAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdAssignment(STParser.IdAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ouputAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterOuputAssignment(STParser.OuputAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ouputAssignment}
+	 * labeled alternative in {@link STParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitOuputAssignment(STParser.OuputAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionValue}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionValue(STParser.ExpressionValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionValue}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionValue(STParser.ExpressionValueContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code booleanValue}
 	 * labeled alternative in {@link STParser#value}.
 	 * @param ctx the parse tree
@@ -115,6 +163,18 @@ public interface STListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInputPinValue(STParser.InputPinValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code idValue}
+	 * labeled alternative in {@link STParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdValue(STParser.IdValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code idValue}
+	 * labeled alternative in {@link STParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdValue(STParser.IdValueContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code trueValue}
 	 * labeled alternative in {@link STParser#boolean_literal}.

@@ -4,6 +4,8 @@ VAR
     V1 : BOOL := INPUT_PIN_5;
     V2 : INT := 12;
 END_VAR;
+OUTPUT_PIN_10 := INPUT_PIN_2;
+V2 := TRUE;
 
 module(
     (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
@@ -20,6 +22,9 @@ module(
             (local.set $V1) ;;set v1 as the input pin nr 5
             (i32.const 12)
             (local.set $V2)
+            (local.get $V1) ::value to be set on the pin
+            (i32.const 10) ;;pin number for output
+            (call $setpin)
         )
 )
 

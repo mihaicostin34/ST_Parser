@@ -7,11 +7,11 @@
 grammar ST;
 
 start
-  : statement+  #multipleStatements
+  : (statement)+  #multipleStatements
   ;
 
 statement:  var_block  #variableBlockRule
-//             | assignment
+             | assignment #assignmentRule
              ;
 
 var_block
@@ -19,7 +19,7 @@ var_block
   ;
 
 variable_declaration:
-  ID ':' type_rule (':=' value )? ';'  #variableDeclaration
+  ID ':' type_rule (':=' value )?  #variableDeclaration
 ;
 
 type_rule:
@@ -27,11 +27,15 @@ type_rule:
   | INTEGER #integerType
   ;
 
-//
-//assignment:
-//    ID ':=' expression ';'
-//    | OUTPUT_PIN ':=' expression ';'
-//;
+
+assignment:
+    ID ':=' expression #idAssignment
+    | OUTPUT_PIN ':=' expression #ouputAssignment
+;
+
+expression:
+    value #expressionValue
+    ;
 
 //expression:
 //left=expression op=MUL right=expression
@@ -58,6 +62,7 @@ type_rule:
 value: boolean_literal  #booleanValue
     | numeric_literal  #numericLiteralValue
     | INPUT_PIN  #inputPinValue
+    | ID #idValue
 ;
 
 boolean_literal: 'TRUE'  #trueValue
@@ -142,4 +147,5 @@ DIFF: '!=';
 BOOLEAN: ' BOOL';
 INTEGER: ' INT';
 WS : [ \n\r\t]+ -> channel(HIDDEN) ;
+SEMICOLON: ';' ->skip;
 Block_comment : '(*' (Block_comment|.)*? '*)' -> channel(HIDDEN) ; // nesting comments allowed

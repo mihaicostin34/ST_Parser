@@ -1,4 +1,6 @@
 VAR
-    V1 : BOOL := TRUE;
-    V2 : BOOL := INPUT_PIN_2;
+    V1 : BOOL := INPUT_PIN_12;
+    V2: INT;
 END_VAR;
+V2 := 23;
+OUTPUT_PIN_2 := V1;
