@@ -6,7 +6,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitMultipleStatements(STParser.MultipleStatementsContext ctx) {
         String module = "(module \n    (import \"IO\" \"getpin\" (func $getpin (param $pin i8) (result i8)))\n" +
-                "    (import \"IO\" \"setpin\" (func $setpin (param $pin i8)))\n(start $program)\n(func $program";
+                "    (import \"IO\" \"setpin\" (func $setpin (param $pin i8)))\n(func (export \"run\"(result i32) )";
         StringBuilder contents = new StringBuilder();
         for(STParser.StatementContext s : ctx.statement()){
             contents.append(this.visit(s));
@@ -57,12 +57,12 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
 
     @Override
     public String visitBooleanType(STParser.BooleanTypeContext ctx) {
-        return "i8";
+        return "i32";
     }
 
     @Override
     public String visitIntegerType(STParser.IntegerTypeContext ctx) {
-        return "i8";
+        return "i32";
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         StringBuilder result = new StringBuilder();
         result.append("(local.get $" + this.visit(ctx.expression()) + ")\n"); //add expression value to stack
         String portNumber = ctx.OUTPUT_PIN().getText().split("_")[2];
-        result.append("(i8.const "+ portNumber  + ") ;;ouput port number \n"); //add pport number
+        result.append("(i32.const "+ portNumber  + ") ;;ouput port number \n"); //add pport number
         result.append("(call $setpin)");
         return result.toString();
     }
@@ -92,7 +92,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitBooleanValue(STParser.BooleanValueContext ctx) {
         StringBuilder boolVal = new StringBuilder();
-        boolVal.append("(i8.const ");
+        boolVal.append("(i32.const ");
         boolVal.append(this.visit(ctx.boolean_literal()));
         boolVal.append(")");
         return boolVal.toString();
@@ -102,7 +102,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     public String visitNumericLiteralValue(STParser.NumericLiteralValueContext ctx) {
         StringBuilder result = new StringBuilder();
         String id = ctx.numeric_literal().getText();
-        result.append("(i8.const " + id + ")");
+        result.append("(i32.const " + id + ")");
         return result.toString();
     }
 
@@ -112,7 +112,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         StringBuilder result = new StringBuilder();
         String inputPinNr = ctx.INPUT_PIN().getText().split("_")[2];
         System.out.println(inputPinNr);
-        String addValueToStack = "(i8.const "+ inputPinNr +") ;;input port number";
+        String addValueToStack = "(i32.const "+ inputPinNr +") ;;input port number";
         result.append(addValueToStack);
         result.append('\n');
         //call getpin value
