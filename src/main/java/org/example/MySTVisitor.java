@@ -1,5 +1,6 @@
 package org.example;
 
+import org.antlr.v4.codegen.model.SrcOp;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STVisitor<String>{
@@ -7,7 +8,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitMultipleStatements(STParser.MultipleStatementsContext ctx) {
         String module = "(module \n    (import \"IO\" \"getpin\" (func $getpin (param $pin i32) (result i32)))\n" +
-                "    (import \"IO\" \"setpin\" (func $setpin (param $pin i32) (param $value i32)))\n(func (export \"run\") ";
+                "    (import \"IO\" \"setpin\" (func $setpin (param $pin i32) (param $value i32)))\n(func (export \"run\") \n";
         StringBuilder contents = new StringBuilder();
         contents.append(this.visit(ctx.block()));
         module += contents;
@@ -43,6 +44,11 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     @Override
     public String visitWhileRule(STParser.WhileRuleContext ctx) {
         return this.visit(ctx.while_());
+    }
+
+    @Override
+    public String visitCaseRule(STParser.CaseRuleContext ctx) {
+        return this.visit(ctx.case_());
     }
 
     @Override
@@ -247,6 +253,42 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         result.append(right);
         result.append(op);
         return result.toString();
+    }
+
+    @Override
+    public String visitCaseStatement(STParser.CaseStatementContext ctx) {
+        StringBuilder res = new StringBuilder();
+        int i = 0;
+        for(STParser.Case_branchContext br : ctx.case_branch()){
+            System.out.println("aici");
+            res.append(this.visit(ctx.expression()) + "\n");
+            String a = this.visit(br);
+            res.append(a + "\n");
+            if(i< ctx.case_branch().size()-1){
+                res.append("else ");
+            }
+            i++;
+        }
+        if(ctx.else_()!=null){
+            System.out.println("are si else");
+            res.append("else \n");
+            res.append(this.visit(ctx.else_()));
+        }
+        for(int j = 0; j<ctx.case_branch().size(); j++){
+            res.append("end\n");
+        }
+        return res.toString();
+    }
+
+    @Override
+    public String visitCaseBranch(STParser.CaseBranchContext ctx) {
+        StringBuilder res = new StringBuilder();
+        res.append(this.visit(ctx.value()));
+        String a = "\ni32.eq \n";
+        res.append(a);
+        res.append("if \n");
+        res.append(this.visit(ctx.block()));
+        return res.toString();
     }
 
     @Override

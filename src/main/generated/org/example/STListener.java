@@ -80,6 +80,18 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitWhileRule(STParser.WhileRuleContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code caseRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterCaseRule(STParser.CaseRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code caseRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitCaseRule(STParser.CaseRuleContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code variableBlock}
 	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -403,6 +415,30 @@ public interface STListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionDiff(STParser.ExpressionDiffContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code caseStatement}
+	 * labeled alternative in {@link STParser#case}.
+	 * @param ctx the parse tree
+	 */
+	void enterCaseStatement(STParser.CaseStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code caseStatement}
+	 * labeled alternative in {@link STParser#case}.
+	 * @param ctx the parse tree
+	 */
+	void exitCaseStatement(STParser.CaseStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code caseBranch}
+	 * labeled alternative in {@link STParser#case_branch}.
+	 * @param ctx the parse tree
+	 */
+	void enterCaseBranch(STParser.CaseBranchContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code caseBranch}
+	 * labeled alternative in {@link STParser#case_branch}.
+	 * @param ctx the parse tree
+	 */
+	void exitCaseBranch(STParser.CaseBranchContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code booleanValue}
 	 * labeled alternative in {@link STParser#value}.

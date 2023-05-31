@@ -1,0 +1,30 @@
+(module 
+    (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
+    (import "IO" "setpin" (func $setpin (param $pin i32) (param $value i32)))
+(func (export "run") 
+local.get $PROGRAM_STEP
+i32.const 1
+i32.eq 
+if 
+local.get $PROGRAM_STEP
+i32.const 1
+i32.add
+local.set $PROGRAM_STEP
+else local.get $PROGRAM_STEP
+i32.const 2
+i32.eq 
+if 
+local.get $PROGRAM_STEP
+i32.const 2
+i32.add
+local.set $PROGRAM_STEP
+else 
+local.get $PROGRAM_STEP
+i32.const 3
+i32.add
+local.set $PROGRAM_STEP
+end
+end
+
+)
+)

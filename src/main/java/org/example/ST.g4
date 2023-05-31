@@ -17,6 +17,7 @@ statement:  var_block  #variableBlockRule
              | assignment #assignmentRule
              | if #ifRule
              | while #whileRule
+             | case #caseRule
              ;
 
 var_block
@@ -68,13 +69,11 @@ expression:
     | left = expression op = LE right = expression #expressionLE
     ;
 
-//expression:
-//left=expression op=MUL right=expression
+case: 'CASE' expression 'OF' (case_branch)+ (else)? 'END_CASE' #caseStatement
+;
 
-
-//          | ID
-//          | INPUT_PIN
-//;
+case_branch: value ':'block  #caseBranch
+;
 
 value: boolean_literal  #booleanValue
     | numeric_literal  #numericLiteralValue

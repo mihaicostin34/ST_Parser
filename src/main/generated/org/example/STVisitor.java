@@ -53,6 +53,13 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileRule(STParser.WhileRuleContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code caseRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseRule(STParser.CaseRuleContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code variableBlock}
 	 * labeled alternative in {@link STParser#var_block}.
 	 * @param ctx the parse tree
@@ -241,6 +248,20 @@ public interface STVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpressionDiff(STParser.ExpressionDiffContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code caseStatement}
+	 * labeled alternative in {@link STParser#case}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseStatement(STParser.CaseStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code caseBranch}
+	 * labeled alternative in {@link STParser#case_branch}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseBranch(STParser.CaseBranchContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code booleanValue}
 	 * labeled alternative in {@link STParser#value}.
