@@ -8,8 +8,8 @@ i32.const 5
 local.set $COUNT
 i32.const 1
 local.set $DETECTED
-local.get DETECTED
-i32.const 2 
+local.get $DETECTED
+i32.const 2
 call $setpin
 )
 )

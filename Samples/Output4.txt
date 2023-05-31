@@ -2,29 +2,29 @@
     (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
     (import "IO" "setpin" (func $setpin (param $pin i32) (param $value i32)))
 (func (export "run") 
-local $V i32
-local $B i32
-i32.const 0
-local.set $V
+local $STATUS i32
+local $VAR1 i32
+i32.const 1
+local.set $VAR1
 block $endwhile0
 loop $while0
-local.get $V
-
+local.get $VAR1
 i32.const 4
-i32.gt
+i32.le_s
 br_if $endwhile
-i32.const 5
+i32.const 3
 call $getpin
-local.set $B
-local.get $B
-
+local.set $STATUS
+local.get $STATUS
+i32.const 4 
+call $setpin
 i32.const 1
-i32.eq
-if
-local.get $B
-
-local.set $OUTPUT_PIN
-end
+i32.const 3 
+call $setpin
+local.get $VAR1
+i32.const 1
+i32.add
+local.set $VAR1
 br $while0
 end $while0
 end $endwhile0

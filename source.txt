@@ -1,4 +1,11 @@
-WHILE X < 10 DO
-    OUTPUT_PIN_5 := INPUT_PIN_4;
-    X := X + 1;
+VAR
+    V: INT;
+    B : BOOL;
+END_VAR;
+V := 0;
+WHILE V > 4 DO
+    B := INPUT_PIN_5;
+    IF B == TRUE THEN
+        OUTPUT_PIN := B;
+    END_IF;
 END_WHILE;

@@ -6,16 +6,16 @@ local $STATUS i32
 i32.const 3
 call $getpin
 local.set $STATUS
-local.get STATUS
+local.get $STATUS
 i32.const 1
 i32.eq
 if 
 i32.const 1
-i32.const 1
+i32.const 1 
 call $setpin
 else 
 i32.const 1
-i32.const 2
+i32.const 2 
 call $setpin
 end
 )

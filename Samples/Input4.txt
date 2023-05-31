@@ -1,0 +1,11 @@
+VAR
+    STATUS : BOOL;
+    VAR1 : INT;
+END_VAR;
+VAR1 := 1;
+WHILE VAR1 <= 4 DO
+    STATUS := INPUT_PIN_3;
+    OUTPUT_PIN_4 := STATUS;
+     OUTPUT_PIN_3 :=TRUE;
+    VAR1 := VAR1 + 1;
+END_WHILE;

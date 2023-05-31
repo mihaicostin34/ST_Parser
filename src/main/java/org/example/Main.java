@@ -30,8 +30,8 @@ public class Main {
         return fileData;
     }
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        String sourceFile = "Samples/Input3.txt";
-        String targetFile = "Samples/Output3.txt";
+        String sourceFile = "Samples/Input4.txt";
+        String targetFile = "Samples/Output4.txt";
         String prog = readFile(sourceFile);
         STLexer lexer = new STLexer(CharStreams.fromString(prog));
         STParser parser = new STParser(new CommonTokenStream(lexer));

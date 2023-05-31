@@ -68,7 +68,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
             finalRes.append('\n');
             finalRes.append(val);
             finalRes.append('\n');
-            finalRes.append("local.set $" + varName + "\n");
+            finalRes.append("local.set $" + varName);
         }
         return finalRes.toString();
     }
@@ -88,7 +88,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         String id = ctx.ID().getText();
         StringBuilder result = new StringBuilder();
         result.append(this.visit(ctx.expression()) + "\n");
-        result.append("local.set $" + id + "\n");
+        result.append("local.set $" + id );
         return result.toString();
     }
 
@@ -97,7 +97,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         StringBuilder result = new StringBuilder();
         result.append(this.visit(ctx.expression())); //add expression value to stack
         String portNumber = ctx.OUTPUT_PIN().getText().split("_")[2];
-        result.append("\n i32.const "+ portNumber  + " \n"); //add pport number
+        result.append("\ni32.const "+ portNumber  + " \n"); //add pport number
         result.append("call $setpin");
         return result.toString();
     }
@@ -139,7 +139,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         result.append(this.visit(ctx.block()));
         result.append("br $while" + current_counter + "\n");
         result.append("end $while" + current_counter + "\n");
-        result.append("end $endwhile" + current_counter + "\n");
+        result.append("end $endwhile" + current_counter);
         return result.toString();
     }
 
@@ -162,7 +162,14 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
 
     @Override
     public String visitExpressionLE(STParser.ExpressionLEContext ctx) {
-        return null;
+        String left = this.visit(ctx.left) + '\n';
+        String right = this.visit(ctx.right) + '\n';
+        String op = "i32.le_s" + '\n';
+        StringBuilder result = new StringBuilder();
+        result.append(left);
+        result.append(right);
+        result.append(op);
+        return result.toString();
     }
 
     @Override
@@ -232,14 +239,21 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
 
     @Override
     public String visitExpressionDiff(STParser.ExpressionDiffContext ctx) {
-        return null;
+        String left = this.visit(ctx.left) + '\n';
+        String right = this.visit(ctx.right) + '\n';
+        String op = "i32.ne" + '\n';
+        StringBuilder result = new StringBuilder();
+        result.append(left);
+        result.append(right);
+        result.append(op);
+        return result.toString();
     }
 
     @Override
     public String visitExpressionAdd(STParser.ExpressionAddContext ctx) {
         String left = this.visit(ctx.left) + '\n';
         String right = this.visit(ctx.right) + '\n';
-        String op = "i32.add" + '\n';
+        String op = "i32.add";
         StringBuilder result = new StringBuilder();
         result.append(left);
         result.append(right);
@@ -359,7 +373,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     public String visitIdValue(STParser.IdValueContext ctx) {
         StringBuilder result = new StringBuilder();
         String id = ctx.ID().getText();
-        return "local.get " + id + "\n";
+        return "local.get $" + id ;
     }
 
     @Override
