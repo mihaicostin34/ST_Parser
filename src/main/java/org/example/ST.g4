@@ -7,11 +7,16 @@
 grammar ST;
 
 start
-  : (statement)+  #multipleStatements
+  : block  #multipleStatements
   ;
+
+block: (statement)+ #blockRule
+;
 
 statement:  var_block  #variableBlockRule
              | assignment #assignmentRule
+             | if #ifRule
+             | while #whileRule
              ;
 
 var_block
@@ -33,28 +38,40 @@ assignment:
     | OUTPUT_PIN ':=' expression #ouputAssignment
 ;
 
+if: 'IF' expression 'THEN' if_block = block (else_clause = else)? 'END_IF' #ifBranch
+;
+
+else : 'ELSE' else_block = block #elseBranch
+;
+
+while: 'WHILE' expression 'DO' block 'END_WHILE' #whileLoop
+;
+
 expression:
     value #expressionValue
+    | left = expression op = MUL right = expression #expressionMul
+    | left=expression op=DIV right=expression #expressionDiv
+    | left=expression op=MOD right=expression #expressionMod
+    | left=expression op=ADD right=expression #expressionAdd
+    | left=expression op=SUB right=expression #expressionSub
+    | LP expression RP #expressionBrackets
+    | op = NOT expression #expressionNot
+    | op = SUB expression #expressionNeg
+    | left=expression op=OR right=expression #expressionOr
+    | left=expression op=AND right=expression #expressionAnd
+    | left=expression op=XOR right=expression #expressionXor
+    | left=expression op=EQ right=expression #expressionEquals
+    | left=expression op=DIFF right=expression #expressionDiff
+    | left = expression op = GE right = expression #expressionGE
+    | left = expression op = GT right = expression #expressionGT
+    | left = expression op = LT right = expression #expressionLT
+    | left = expression op = LE right = expression #expressionLE
     ;
 
 //expression:
 //left=expression op=MUL right=expression
-//          | left=expression op=DIV right=expression
-//          | left=expression op=MOD right=expression
-//          | left=expression op=ADD right=expression
-//          | left=expression op=SUB right=expression
-//          | LP expression RP
-//          | op = NOT expression
-//          | op = SUB expression
-//          | left=expression op=OR right=expression
-//          | left=expression op=AND right=expression
-//          | left=expression op=XOR right=expression
-//          | left=expression op=EQ right=expression
-//          | left=expression op=DIFF right=expression
-//          | left = expression op = GE right = expression
-//          | left = expression op = GT right = expression
-//          | left = expression op = LT right = expression
-//          | left = expression op = LE right = expression
+
+
 //          | ID
 //          | INPUT_PIN
 //;

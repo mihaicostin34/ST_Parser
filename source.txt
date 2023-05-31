@@ -1,6 +1,4 @@
-VAR
-    V1 : BOOL := INPUT_PIN_12;
-    V2: INT;
-END_VAR;
-V2 := 23;
-OUTPUT_PIN_2 := V1;
+WHILE X < 10 DO
+    OUTPUT_PIN_5 := INPUT_PIN_4;
+    X := X + 1;
+END_WHILE;

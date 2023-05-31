@@ -1,0 +1,15 @@
+VAR
+    STATUS : BOOL;
+    VAR1 : INT;
+END_VAR;
+VAR1 := 1;
+WHILE VAR1 != 4 DO
+    STATUS := INPUT_PIN_3;
+    OUTPUT_PIN_4 := STATUS;
+    IF VAR1 % 2 == 0 THEN
+        OUTPUT_PIN_3 :=TRUE;
+    ELSE
+        OUTPUT_PIN_3 := FALSE;
+    END_IF;
+    VAR1 := VAR1 + 1;
+END_WHILE;

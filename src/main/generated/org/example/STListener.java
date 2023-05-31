@@ -20,6 +20,18 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitMultipleStatements(STParser.MultipleStatementsContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code blockRule}
+	 * labeled alternative in {@link STParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockRule(STParser.BlockRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code blockRule}
+	 * labeled alternative in {@link STParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockRule(STParser.BlockRuleContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code variableBlockRule}
 	 * labeled alternative in {@link STParser#statement}.
 	 * @param ctx the parse tree
@@ -43,6 +55,30 @@ public interface STListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssignmentRule(STParser.AssignmentRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ifRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfRule(STParser.IfRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ifRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfRule(STParser.IfRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code whileRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileRule(STParser.WhileRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code whileRule}
+	 * labeled alternative in {@link STParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileRule(STParser.WhileRuleContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code variableBlock}
 	 * labeled alternative in {@link STParser#var_block}.
@@ -116,6 +152,42 @@ public interface STListener extends ParseTreeListener {
 	 */
 	void exitOuputAssignment(STParser.OuputAssignmentContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ifBranch}
+	 * labeled alternative in {@link STParser#if}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfBranch(STParser.IfBranchContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ifBranch}
+	 * labeled alternative in {@link STParser#if}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfBranch(STParser.IfBranchContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code elseBranch}
+	 * labeled alternative in {@link STParser#else}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseBranch(STParser.ElseBranchContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code elseBranch}
+	 * labeled alternative in {@link STParser#else}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseBranch(STParser.ElseBranchContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code whileLoop}
+	 * labeled alternative in {@link STParser#while}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileLoop(STParser.WhileLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code whileLoop}
+	 * labeled alternative in {@link STParser#while}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileLoop(STParser.WhileLoopContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code expressionValue}
 	 * labeled alternative in {@link STParser#expression}.
 	 * @param ctx the parse tree
@@ -127,6 +199,210 @@ public interface STListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionValue(STParser.ExpressionValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionAdd}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionAdd(STParser.ExpressionAddContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionAdd}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionAdd(STParser.ExpressionAddContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionSub}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionSub(STParser.ExpressionSubContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionSub}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionSub(STParser.ExpressionSubContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionLT}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionLT(STParser.ExpressionLTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionLT}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionLT(STParser.ExpressionLTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionMod}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionMod(STParser.ExpressionModContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionMod}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionMod(STParser.ExpressionModContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionGT}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionGT(STParser.ExpressionGTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionGT}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionGT(STParser.ExpressionGTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionMul}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionMul(STParser.ExpressionMulContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionMul}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionMul(STParser.ExpressionMulContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionBrackets}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionBrackets(STParser.ExpressionBracketsContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionBrackets}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionBrackets(STParser.ExpressionBracketsContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionXor}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionXor(STParser.ExpressionXorContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionXor}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionXor(STParser.ExpressionXorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionDiv}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionDiv(STParser.ExpressionDivContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionDiv}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionDiv(STParser.ExpressionDivContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionLE}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionLE(STParser.ExpressionLEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionLE}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionLE(STParser.ExpressionLEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNeg}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNeg(STParser.ExpressionNegContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNeg}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNeg(STParser.ExpressionNegContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionEquals}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionEquals(STParser.ExpressionEqualsContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionEquals}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionEquals(STParser.ExpressionEqualsContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNot}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNot(STParser.ExpressionNotContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNot}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNot(STParser.ExpressionNotContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionAnd}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionAnd(STParser.ExpressionAndContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionAnd}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionAnd(STParser.ExpressionAndContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionGE}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionGE(STParser.ExpressionGEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionGE}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionGE(STParser.ExpressionGEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionOr}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionOr(STParser.ExpressionOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionOr}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionOr(STParser.ExpressionOrContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionDiff}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionDiff(STParser.ExpressionDiffContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionDiff}
+	 * labeled alternative in {@link STParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionDiff(STParser.ExpressionDiffContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code booleanValue}
 	 * labeled alternative in {@link STParser#value}.
