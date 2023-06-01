@@ -2,14 +2,15 @@
     (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
     (import "IO" "setpin" (func $setpin (param $pin i32) (param $value i32)))
 (func (export "run") 
-local $COUNT i32
-local $DETECTED i32
+
+(local $COUNT i32)
+(local $DETECTED i32)
 i32.const 5
 local.set $COUNT
 i32.const 1
 local.set $DETECTED
 local.get $DETECTED
-i32.const 2
+i32.const 2 
 call $setpin
 )
 )

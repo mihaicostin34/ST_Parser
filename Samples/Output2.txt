@@ -2,7 +2,8 @@
     (import "IO" "getpin" (func $getpin (param $pin i32) (result i32)))
     (import "IO" "setpin" (func $setpin (param $pin i32) (param $value i32)))
 (func (export "run") 
-local $STATUS i32
+
+(local $STATUS i32)
 i32.const 3
 call $getpin
 local.set $STATUS

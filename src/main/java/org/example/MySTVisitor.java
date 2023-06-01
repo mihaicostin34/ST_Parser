@@ -67,7 +67,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         StringBuilder finalRes = new StringBuilder();
         String varName = ctx.ID().getText();
         String type = this.visit(ctx.type_rule());
-        String declaration_line = "local $" + varName+ " " + type + "";
+        String declaration_line = "(local $" + varName+ " " + type + ")";
         finalRes.append(declaration_line);
         if(ctx.value()!=null){
             String val = this.visit(ctx.value());
@@ -141,7 +141,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
         result.append(loop_label);
         String exp = this.visit(ctx.expression());
         result.append(exp);
-        result.append("br_if $endwhile" + "\n");
+        result.append("br_if $endwhile" + current_counter + "\n");
         result.append(this.visit(ctx.block()));
         result.append("br $while" + current_counter + "\n");
         result.append("end $while" + current_counter + "\n");
@@ -331,7 +331,7 @@ public class MySTVisitor extends AbstractParseTreeVisitor<String> implements STV
     public String visitExpressionMod(STParser.ExpressionModContext ctx) {
         String left = this.visit(ctx.left) + '\n';
         String right = this.visit(ctx.right) + '\n';
-        String op = "i32.rem" + '\n';
+        String op = "i32.rem_s" + '\n';
         StringBuilder result = new StringBuilder();
         result.append(left);
         result.append(right);
